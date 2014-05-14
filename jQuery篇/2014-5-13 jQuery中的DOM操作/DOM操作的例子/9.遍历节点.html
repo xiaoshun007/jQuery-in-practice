@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery属性操作</title>
+
+<style type="text/css">
+	.content {
+		font-weight: bold;	/*粗体字*/
+		color: red;
+	}
+	
+	.another {
+		font-style: italic;		/*斜体字*/
+		color: blue;
+	}
+</style>
+
+<!-- 引入 jQuery -->
+<script src="../scripts/jquery-1.3.1.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#childrenBtn").click(function() {
+			var $body = $("body").children();
+			alert("body的子节点有： " + $body.length + "个。");
+			
+			var $ul = $("ul").children();
+			alert("ul中的子节点个数为： " + $ul.length + "个。");
+			
+			for (var i = 0, len = $ul.length; i < len; i++) {
+				var ul_value = $ul[i].innerHTML;
+				alert(ul_value);
+			}
+		});
+		
+		$("#nextBtn").click(function() {
+			var $p = $("p").next();
+			var len = $p.length;
+			alert("紧邻p的同辈元素的个数为： " + len);
+			
+			for (var i = 0; i < len; i++) {
+				alert("紧邻p的同辈元素的innerHTML为：" + $p[i].innerHTML);
+			}
+		});
+	});
+</script>
+</head>
+
+<body>
+	<p>
+		1.children()：获得元素的子节点，不考虑后代节点<br/>
+		2.next()：获得元素后面紧邻的同辈元素<br/>
+		3.val()：类似于JavaScript中的value<br/>
+		4.<br/>
+	</p>
+	<p id="content_id" class="content" title="选择你最喜欢的水果." ><strong>你最喜欢的水果是?</strong></p>
+	<ul>
+	  <li title='苹果'>苹果</li>
+	  <li title='橘子'>橘子</li>
+	  <li title='菠萝'>菠萝</li>
+	</ul>
+	
+	<input type="text" id="address" value="请输入邮箱地址"/>
+	<br/>
+	<input type="text" id="password" value="请输入邮箱密码"/>
+	
+	<br/>
+	
+	<input type="button" id="childrenBtn" value="children()"/>
+	<input type="button" id="nextBtn" value="next()"/>
+
+</body>
+</html>

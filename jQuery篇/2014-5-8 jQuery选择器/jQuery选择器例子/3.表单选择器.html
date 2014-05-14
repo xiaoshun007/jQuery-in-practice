@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>表单选择器</title>
+<!-- 引入 jQuery -->
+<script src="../scripts/jquery-1.3.1.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	// 等待DOM树加载完毕加载
+	$(document).ready(function() {
+		// 1.获得所有表单元素的个数
+		$("#inputCountBtn").click(function() {
+			alert("所有表单元素的个数为：" + $("#form1 :input").length);
+		});
+		
+		// 2.获得表单中单行文本框的个数（input中type为text的个数）
+		$("#textCountBtn").click(function() {
+			alert("表单中单行文本框的个数为：" + $("#form1 :text").length);
+		});
+		
+		// 3.获得表单中密码框的个数（input中type为password的个数）
+		$("#passwordCountBtn").click(function() {
+			alert("表单中密码框的个数为：" + $("#form1 :password").length);
+		});
+		
+	});
+</script>
+</head>
+
+<body>
+	<form id="form1" action="#">
+		<input type="button" value="Input Button"/><br/>
+		<input type="checkbox" />中国<br/>
+
+		<input type="file" /><br/>
+		<input type="hidden" /><br/>
+		<input type="image" /><br/>
+
+		password:<input type="password" /><br/>
+		<input type="radio" />男<br/>
+		<input type="reset" /><br/>
+
+		<input type="submit" /><br/>
+		text:<input type="text" /><br/>
+		<select><option>Option</option></select><br/>
+
+		<textarea></textarea><br/>
+		<button>Button</button>
+		
+	</form>
+	<br/>
+	
+	<input type="button" id="inputCountBtn" value="表单元素的个数"/>
+	<input type="button" id="textCountBtn" value="单行文本框个数"/>
+	<input type="button" id="passwordCountBtn" value="密码框个数"/>
+</body>
