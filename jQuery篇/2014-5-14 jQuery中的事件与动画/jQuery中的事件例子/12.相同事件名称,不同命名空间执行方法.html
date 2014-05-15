@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery bind 绑定不同命名空间的多个事件</title>
+
+<style>
+	.content {
+		width: 100px;
+		height: 100px;
+		background: #888;
+	}
+</style>
+
+<!-- 引入 jQuery -->
+<script src="../scripts/jquery-1.3.1.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		// 为div同时绑定相同的事件类型，但是指定不同的命名空间
+		$(".content").bind("click", function() {
+			$("body").append("<p>click事件</p>");
+		}).bind("click.plugin", function() {
+			$("body").append("<p>click.plugin事件</p>");
+		});
+		
+		$("input").bind("click", function() {
+			// click后面！的作用是匹配所有不包含在命名空间中的click方法
+			$(".content").trigger("click!");
+		});
+	});
+</script>
+</head>
+
+<body>
+	<h1>
+		说明：<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;为div绑定相同事件名称，但是指定不同的命名空间，要想触发没有命名空间的使用"click!"
+	</h1>
+	<h3>
+		操作：<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;单击“请点击”，查看例子效果；单击按钮，查看没有命名空间的事件
+	</h3>
+	
+	<div class="content">请点击</div>
+	<input type="button" value="没有命名空间的事件"/>
+</body>
+</html>
