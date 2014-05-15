@@ -21,12 +21,12 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("htmlBtn").click(function() {
+		$("#htmlBtn").click(function() {
 			var p_html = $("#content_id").html();
 			alert(p_html);
 		});
 		
-		$("textBtn").click(function() {
+		$("#textBtn").click(function() {
 			var p_text = $("#content_id").text();
 			alert(p_text);
 		});
@@ -84,6 +84,7 @@
 	  <li title='菠萝'>菠萝</li>
 	</ul>
 	
+	<h3>鼠标点击输入框，提示信息消失，失去鼠标焦点，重现提示信息</h3>
 	<input type="text" id="address" value="请输入邮箱地址"/><br/>
 	<input type="text" id="password" value="请输入邮箱密码"/>
 	
