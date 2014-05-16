@@ -11,10 +11,69 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		// 步骤1：初始化
-		// 步骤2：
-		// 步骤3：
-		// 步骤4：
+		// 初始化当前版面数为1
+		var page = 1;
+		// 每一页视频个数
+		var i = 4;
+		
+		// 步骤1：初始化HTML及样式控制
+		// 步骤2：为下一页按钮添加单击事件
+		$("span.next").click(function() {
+			var $v_show = $(".v_content_list");
+			var $v_content = $(".v_content");
+			// 获得视频展示区域的长度
+			var v_width = $v_content.width();
+			// 总的视频图片数
+			var len = $v_show.find("li").length;
+			// 页数
+			var page_count = Math.ceil(len / i);
+			
+			// 判断“视频内容展示区域”是否处于动画中
+			if (!$v_show.is(":animated")) {
+			
+				// 已经是最后一个版面，如果再往后，必须跳转到第一个版面
+				if (page == page_count) {
+					$v_show.animate({"left": '0px'}, "slow");
+					page = 1;
+				} else {
+					$v_show.animate({"left": "-=" + v_width}, "slow");
+					page++;
+				}
+				
+			}
+			// 步骤3：让左上角圆点随动画移动
+			// 移动完后，设置到代表当前版面的圆点上即可，并且取出同辈元素中的current样式
+			$(".highlight_tip span").eq(page - 1).addClass("current").siblings().removeClass("current");
+		});
+		
+		// 步骤4：添加上一页单击事件
+		$("span.prev").click(function() {
+			var $v_show = $(".v_content_list");
+			var $v_content = $(".v_content");
+			// 获得视频展示区域的长度
+			var v_width = $v_content.width();
+			// 总的视频图片数
+			var len = $v_show.find("li").length;
+			// 页数
+			var page_count = Math.ceil(len / i);
+			
+			// 判断“视频内容展示区域”是否处于动画中
+			if (!$v_show.is(":animated")) {
+			
+				// 已经是第一个版面，如果再往前，必须跳转到最后一个版面
+				if (page == 1) {
+					$v_show.animate({"left": "-=" + v_width * (page_count - 1)}, "slow");
+					page = page_count;
+				} else {
+					$v_show.animate({"left": "+=" + v_width}, "slow");
+					page--;
+				}
+				
+			}
+			// 步骤3：让左上角圆点随动画移动
+			// 移动完后，设置到代表当前版面的圆点上即可，并且取出同辈元素中的current样式
+			$(".highlight_tip span").eq(page - 1).addClass("current").siblings().removeClass("current");
+		});
 	});
 </script>
 </head>
